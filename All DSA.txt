@@ -1,0 +1,1293 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#define Max 20
+int arr[Max];
+void insertion_myarray();
+void search_myarray();
+void delete_myarray();
+void display_myarray();
+void largest_myarray();
+void smallest_myarray();
+int num;
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+void mylinklist();
+void singly_mylinklist();
+void insertion_singly_mylinklist();
+void insertion_end_singly_mylinklist();
+void insertion_at_point_singly_mylinklist();
+void display_singly_mylinklist();
+void delete_bigining_singly_mylinklist();
+void delete_end_singly_mylinklist();
+void delete_atposition_singly_mylinklist();
+struct node*head=NULL;
+
+struct node1{
+    int data;
+    struct node1* pre;
+    struct node1* next;
+};
+
+
+void doubly_mylinklist();
+void insertion_bigiening_doubly_mylinklist();
+void insertion_at_end_doubly_mylinklist();
+void insertion_at_position_doubly_mylinklist();
+void delete_bigining_doubly_mylinklist();
+void delete_end_doubly_mylinklist();
+void delete_at_position_doubly_mylinklist();
+void display_doubly_mylinklist();
+struct node1* head1 = NULL;
+
+
+
+struct node2{
+    int data;
+    struct node2* next;
+};
+
+void circular_mylinklist();
+void insertion_at_bigiening_circular_singly_mylinklist();
+void insertion_end_singly_circular_mylinklist();
+void insertion_at_position_singly_circular_mylinklist();
+void deletion_at_bigining_singly_circular_mylinklist();
+void deletion_at_end_singly_circular_mylinklist();
+void deletion_at_sertain_posituion_circular_mylinklist();
+void display_circular_singly_mylinklist();
+struct node2* tail = NULL;
+
+
+void mystack();
+int arr_stack[Max];
+int top=-1;
+void array_mystack();
+void push_in_array_mystack();
+void pop_array_mystck();
+void arr_stack_empty();
+void arr_stack_full();
+void arr_top_element_mystack();
+void display_stack_array_mystack();
+
+
+struct lnode{
+    int data;
+    struct lnode* next;
+};
+
+struct lnode* head3=NULL;
+
+void linklist_mystack();
+int pop_linklist_mystack();
+void push_linklist_mystack();
+void top_linklist_mystack();
+void display_linklist_mystack();
+
+
+int queue_arr[Max];
+int rear=-1;
+int front=-1;
+void myqueue();
+void arr_myqueue();
+void enqueue_myqueue();
+void dequeue_myqueue();
+void display_arr_queue();
+
+
+struct nodesl{
+    int data;
+    struct nodesl* next;
+};
+
+struct nodesl* front1;
+struct nodesl* rear1;
+
+void linklist_myqueue();
+void enqueue_linklist_myqueue();
+void dequeue_linklist_myqueue();
+void display_linklist_myqueue();
+
+
+struct tnode{
+  int data;
+  struct tnode* leftchild, *rightchild;
+};
+struct tnode* root=NULL;
+
+struct tnode* new_node(int item){
+    struct tnode* temp=(struct tnode*)malloc(sizeof(struct tnode));
+    temp->data=item;
+    temp->leftchild=NULL;
+    temp->rightchild=NULL;
+    return temp;
+}
+
+void myarray(){
+    int a;
+    while(1){
+    printf("\n----------Various operation on array-----------\n");
+    printf("\n");
+    printf("1. Inserting an element in the array.\n");
+    printf("2. Searching an elemnet in array.\n");
+    printf("3. Deleting an element in an array.\n");
+    printf("4. Display the element of an array.\n");
+    printf("5. Largest element of array.\n");
+    printf("6. Smallest elemnet of array.\n");
+    printf("6. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+           
+            case 1:
+            insertion_myarray();
+            break;
+           
+            case 2:
+            search_myarray();
+            break;
+           
+            case 3:
+            delete_myarray();
+            break;
+           
+            case 4:
+            display_myarray();
+            break;
+           
+            case 5:
+            largest_myarray();
+            break;
+           
+            case 6:
+            smallest_myarray();
+            break;
+           
+            case 7:
+            exit(1);
+            break;
+           
+            default:
+            printf("You entered the wrong choise :");
+            break;
+        }
+    }
+}
+
+void insertion_myarray(){
+    int i;
+   
+    printf("Enter the no of element you want to insert upto 100 :");
+    scanf("%d",&num);
+   
+    for(i=0; i<num; i++){
+        scanf("%d", &arr[i]);
+    }
+}
+
+void search_myarray(){
+    int i, y;
+    printf("Enter the number you want to search :");
+    scanf("%d", &y);
+   
+    for(i=0; i<num; i++){
+        if(arr[i]==y){
+            printf("We got the number at position %d", i+1);
+        }
+    }
+}
+
+void delete_myarray(){
+    int x;
+    printf("Enter the position you want to delete");
+    scanf("%d", &x);
+   
+    for(int i=x-1; i<num; i++){
+        arr[i]=arr[i+1];
+        num--;
+    }
+}
+
+void display_myarray(){
+    printf("The element in an array are : ");
+    for(int i=0; i<num; i++){
+        printf("%d", arr[i]);
+    }
+}
+
+void largest_myarray(){
+    int i;
+    int max = arr[0];
+    for(i=0; i<num; i++){
+       if(arr[i]>max){
+           max=arr[i];
+       }
+    }
+    printf("The largest element is %d", max);
+}
+
+void smallest_myarray(){
+    int i;
+    int min = arr[0];
+    for(i=0; i<num; i++){
+        if(arr[i]<min){
+           min=arr[i];
+       }
+    }
+    printf("%d", min);
+}
+
+void inverse_traverse_myarray(){
+   
+   
+}
+
+
+
+void mylinklist(){
+    int choise;
+    printf("\n-------Choose the type of linklist----------\n");
+    printf("\n");
+    printf("1. Singly linklist\n");
+    printf("2. Doubly linklist\n");
+    printf("3. Circular linklist\n");
+    printf("\n");
+    printf("Enter your choise :");
+    scanf("%d", &choise);
+   
+    while(1){
+        switch(choise){
+            case 1:
+            singly_mylinklist();
+            break;
+           
+            case 2:
+            doubly_mylinklist();
+            break;
+           
+            case 3:
+            circular_mylinklist();
+            break;
+           
+            default:
+            printf("You enterd the wrong choise.\n");
+            break;
+        }
+       
+    }
+}
+
+void singly_mylinklist(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on linklist-----------\n");
+    printf("\n");
+    printf("1. Inserting an element at the biggining by singly linklist.\n");
+    printf("2. Inserting an element at the end by singly linklist.\n");
+    printf("3. Inserting an element at the any position by singly linklist.\n");
+    printf("4. Deleting an element at the biggining by singly linklist\n");
+    printf("5. Deleting an element at the end by singly linklist\n");
+    printf("6. Deleting an element at the sertain position by singly linklist\n");
+    printf("7. Displaying the element in singly linklist\n");
+    printf("8. Searching an element in singly linklist.\n");
+    printf("9. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+            case 1:
+            printf("Enter the number you want insert :");
+            scanf("%d", &data);
+            insertion_singly_mylinklist(data);
+            break;
+           
+            case 2:
+            printf("Enter the number you want insert :");
+            scanf("%d", &data);
+            insertion_end_singly_mylinklist(data);
+            break;
+           
+            case 3:
+            printf("Enter the number you want insert :");
+            scanf("%d", &data);
+            printf("Ente rthe poistion at which you want to insert :");
+            scanf("%d", &position);
+            insertion_at_point_singly_mylinklist();
+            break;
+           
+            case 4:
+            delete_bigining_singly_mylinklist();
+            break;
+           
+            case 5:
+            delete_end_singly_mylinklist();
+            break;
+           
+            case 6:
+            printf("Ente rthe poistion at which you want to delete :");
+            scanf("%d", &position);
+            delete_atposition_singly_mylinklist(position);
+            break;
+           
+            case 7:
+            display_singly_mylinklist();
+            break;
+           
+            default:
+            printf("You enteredd the wrong choise.");
+           
+        }
+    }
+}
+
+void insertion_singly_mylinklist(int data1){
+   
+    struct node* temp;
+    temp= (struct node*)malloc(sizeof(struct node));
+    temp->data=data1;
+   
+    if(head==NULL){
+       printf("The list is empty :");
+       head=temp;
+    }else{
+        temp->next=head;
+        head=temp;
+    }
+}
+
+void insertion_end_singly_mylinklist(int data1){
+    struct node* temp, *ptr;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=data1;
+   
+    if(head==NULL){
+        printf("The list is empty");
+        head=temp;
+    }
+    else{
+        ptr=head;
+        while(ptr->next!=NULL){
+            ptr=ptr->next;
+        }
+        temp->next=NULL;
+        ptr->next=temp;
+       
+    }
+}
+
+void insertion_at_point_singly_mylinklist(int data1,int position1){
+    struct node* temp, *ptr;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=data1;
+    int b=0;
+    if(head==NULL){
+        printf("The list is empty");
+        head=temp;
+    }
+    else{
+        ptr=head;
+        while(b!=position1-1){
+            ptr=ptr->next;
+            b++;
+        }
+        temp->next=ptr->next;
+        ptr->next=temp;
+    }
+}
+
+void delete_bigining_singly_mylinklist(){
+    struct node*ptr;
+   
+    if(head==NULL){
+        printf("nothing to delete :");
+    }
+    else{
+        ptr=head;
+        head=head->next;
+        ptr->next=NULL;
+        free(ptr);
+    }
+}
+
+void delete_end_singly_mylinklist(){
+    struct node* ptr, *temp;
+    if(head==NULL){
+        printf("nothing to delete :");
+    }
+    else{
+        ptr=head;
+        while(ptr->next->next!=NULL){
+            ptr=ptr->next;  
+        }
+        free(ptr->next);
+        ptr->next=NULL;
+    }
+}
+
+void delete_atposition_singly_mylinklist(int position1){
+    struct node* ptr, *temp;
+    int b=1;
+    if(head==NULL){
+        printf("Nothing to delete :");
+    }
+    else{
+        ptr=head;
+        while(b!=position1-1){
+            ptr=ptr->next;
+            b++;
+        }
+        temp=ptr->next;
+        ptr->next=temp->next;
+       
+        free(temp);
+    }
+}
+
+void display_singly_mylinklist(){
+    struct node* temp;
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+
+
+
+
+void doubly_mylinklist(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on linklist-----------\n");
+    printf("\n");
+    printf("1. Inserting an element at the biggining by doubly linklist.\n");
+    printf("2. Inserting an element at the end by doubly linklist.\n");
+    printf("3. Inserting an element at the any position by doubly linklist.\n");
+    printf("4. Deleting an element at the biggining by doubly linklist\n");
+    printf("5. Deleting an element at the end by doubly linklist\n");
+    printf("6. Deleting an element at the sertain position by doubly linklist\n");
+    printf("7. Displaying the element in doubly linklist\n");
+    printf("8. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+           case 1:
+           printf("Enter the no. you want to ensert : ");
+           scanf("%d", &data);
+           insertion_bigiening_doubly_mylinklist(data);
+           break;
+           
+           case 2:
+           printf("Enter the no. you want to ensert : ");
+           scanf("%d", &data);
+           insertion_at_end_doubly_mylinklist(data);
+           break;
+           
+           case 3:
+           printf("Enter the no. you want to ensert : ");
+           scanf("%d", &data);
+           printf("Enter the position you want to ensert : ");
+           scanf("%d", &position);
+           insertion_at_position_doubly_mylinklist(data, position);
+           break;
+           
+           case 4:
+           delete_bigining_doubly_mylinklist();
+           break;
+           
+           case 5:
+           delete_end_doubly_mylinklist();
+           break;
+           
+           case 6:
+           printf("Enter the position you want to delete : ");
+           scanf("%d", &position);
+           delete_at_position_doubly_mylinklist(position);
+           break;
+           
+           case 7:
+           display_doubly_mylinklist(head1);
+           break;
+           
+           case 8:
+           exit(1);
+           break;
+           
+           default:
+           printf("You enterd the wrong choise.\n");
+        }    
+    }
+}
+
+void insertion_bigiening_doubly_mylinklist(int data1){
+    struct node1* ptr;
+    ptr=(struct node1*)malloc(sizeof(struct node1));
+    ptr->data=data1;
+   
+    if(head1==NULL){
+        printf("The list is empty.\n");
+        head1=ptr;
+    }
+    else{
+        ptr->pre=NULL;
+        ptr->next=NULL;
+        ptr->next=head1;
+        head1->pre=ptr->next;
+        head1=ptr;
+    }
+}
+
+void insertion_at_end_doubly_mylinklist(int data1){
+    struct node1* ptr, *temp;
+    ptr=(struct node1*)malloc(sizeof(struct node1));
+    ptr->data=data1;
+   
+     if(head1==NULL){
+        printf("The list is empty.\n");
+        head1=ptr;
+    }
+    else{
+        ptr->pre=NULL;
+        ptr->next=NULL;
+        temp=head1;
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=ptr;
+        ptr->pre=temp;
+    }
+   
+}
+
+void insertion_at_position_doubly_mylinklist(int data1, int position){
+    struct node1* ptr, *temp;
+    ptr=(struct node1*)malloc(sizeof(struct node1));
+    ptr->data=data1;
+   
+    if(head1==NULL){
+        printf("The list is empty.\n");
+        head1=ptr;
+    }
+    else{
+        int b=1;
+        ptr->pre=NULL;
+        ptr->next=NULL;
+        temp=head1;
+        while(b!=position-1){
+            temp=temp->next;
+            b++;
+        }
+        ptr->next=temp->next;
+        temp->next=ptr;
+        ptr->pre=temp;
+        temp->next->pre=ptr;
+    }
+}
+
+void delete_bigining_doubly_mylinklist(){
+    struct node1* temp;
+    temp=head1;
+    head1=head1->next;
+    free(temp);
+    head1->pre=NULL;
+   
+}
+
+void delete_end_doubly_mylinklist(){
+    struct node1* temp;
+    temp=head1;
+   
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+    free(temp->next);
+    temp->next=NULL;
+}
+
+void delete_at_position_doubly_mylinklist(int position1){
+    struct node1* temp;
+    temp=head1;
+    int b=1;
+    while(b!=position1-1){
+        temp=temp->next;
+        b++;
+    }
+    struct node1 *ptr=temp->next;
+    ptr->next->pre=temp;
+    temp->next=ptr->next;
+    ;
+    free(ptr);
+}
+
+void display_doubly_mylinklist(struct node1* head1){
+    struct node1* ptr=head1;
+   
+        while(ptr!=NULL){
+            printf("%d ", ptr->data);
+            ptr=ptr->next;
+        }
+}
+
+
+
+
+void circular_mylinklist(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on linklist-----------\n");
+    printf("\n");
+    printf("1. Inserting an element at the biggining by circular linklist.\n");
+    printf("2. Inserting an element at the end by circular  linklist.\n");
+    printf("3. Inserting an element at the any position by circular  linklist.\n");
+    printf("4. Deleting an element at the biggining by circular  linklist\n");
+    printf("5. Deleting an element at the end by circular  linklist\n");
+    printf("6. Deleting an element at the sertain position by circular  linklist\n");
+    printf("7. Displaying the element in circular  linklist\n");
+    printf("8. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+            case 1:
+            printf("Enter the no. you want to ensert : ");
+            scanf("%d", &data);
+            insertion_at_bigiening_circular_singly_mylinklist(data);
+            break;
+           
+            case 2:
+            printf("Enter the no. you want to ensert : ");
+            scanf("%d", &data);
+            insertion_end_singly_circular_mylinklist(data);
+            break;
+           
+            case 3:
+            printf("Enter the no. you want to ensert : ");
+            scanf("%d", &data);
+            printf("Enter the position you want to ensert : ");
+            scanf("%d", &position);
+            insertion_at_position_singly_circular_mylinklist(data,position);
+            break;
+           
+            case 4:
+            deletion_at_bigining_singly_circular_mylinklist();
+            break;
+           
+            case 5:
+            deletion_at_end_singly_circular_mylinklist();
+            break;
+           
+            case 6:
+            printf("Enter the position you want to delete : ");
+            scanf("%d", &position);
+            deletion_at_sertain_posituion_circular_mylinklist(position);
+            break;
+           
+            case 7:
+            display_circular_singly_mylinklist(tail);
+            break;
+           
+            default:
+            printf("You entered the wrong choise.\n");
+            break;
+        }
+    }
+}
+
+void insertion_at_bigiening_circular_singly_mylinklist(int data1){
+    struct node2* temp;
+    temp=(struct node2*)malloc(sizeof(struct node2));
+    temp->data=data1;
+    temp->next=temp;
+    if(tail==NULL){
+        printf("List is not created :");
+        tail=temp;
+    }
+    else if(tail->next==tail){
+        tail->next=temp;
+        temp->next=tail;
+        }
+        else{
+        temp->next=tail->next;
+        tail->next=temp;
+    }
+}
+
+void insertion_end_singly_circular_mylinklist(int data1){
+    struct node2* temp;
+    temp=(struct node2*)malloc(sizeof(struct node2));
+    temp->data=data1;
+    temp->next=tail;
+   
+    if(tail==NULL){
+        printf("List not created :");
+        tail=temp;
+    }
+    else{
+        temp->next=tail->next;
+        tail->next=temp;
+        tail=temp;
+    }
+}
+
+void insertion_at_position_singly_circular_mylinklist(int data1,int position1){
+    struct node2* temp, *ptr;
+    temp=(struct node2*)malloc(sizeof(struct node2));
+    temp->data=data1;
+    temp->next=temp;
+   
+    if(tail==NULL){
+        printf("List is not created :");
+        tail=temp;
+    }
+    else{
+        int b=1;
+        ptr=tail->next;
+        while(b!=position1-1){
+            ptr=ptr->next;
+            b++;
+        }
+        temp->next=ptr->next;
+        ptr->next=temp;
+       
+    }
+}
+
+void deletion_at_bigining_singly_circular_mylinklist(){
+    struct node2* temp;
+   
+    if(tail==NULL){
+        printf("nothing to delete :\n");
+    }
+    else{
+        temp=tail->next;
+        tail->next=temp->next;
+        free(temp);
+    }
+}
+
+void deletion_at_end_singly_circular_mylinklist(){
+    struct node2* temp;
+   
+    if(tail==NULL){
+        printf("nothing to delete :\n");
+    }
+    else{
+        temp=tail->next;
+        while(temp->next!=tail){
+           temp=temp->next;
+        }
+         temp->next=tail->next;
+         tail=temp;
+         temp=temp->next;
+         free(temp);
+    }
+}
+
+void deletion_at_sertain_posituion_circular_mylinklist(int position1){
+    struct node2* temp, *ptr;
+   
+    if(tail==NULL){
+        printf("nothing to delete :\n");
+    }
+    else{
+        int b=0;
+        temp=tail->next;
+        while(b!=position1-1){
+            temp=temp->next;
+            b++;
+        }
+        ptr=temp->next;
+        temp->next=ptr->next;
+        free(ptr);
+    }
+   
+}
+
+void display_circular_singly_mylinklist(struct node2* tail1){
+    struct node2* temp=tail1->next;
+   
+    if(tail==NULL){
+        printf("nothing to print :\n");
+    }
+    do{
+       printf("%d ", temp->data);
+       temp=temp->next;
+    }
+    while(temp!=tail1->next);
+}
+
+
+
+
+void mystack(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on stack of array-----------\n");
+    printf("\n");
+    printf("1. Stack implementaionn by array.\n");
+    printf("2. Stack implementaionn by linklist.\n");
+    printf("3. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+            case 1:
+            array_mystack();
+            break;
+           
+            case 2:
+            linklist_mystack();
+            break;
+           
+            default:
+            printf("You entered the wrong choise.");
+            break;
+        }
+    }
+}
+
+void array_mystack(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on stack of array-----------\n");
+    printf("\n");
+    printf("1. Inserting an element at the stack.\n");
+    printf("2. Deleting top at the stack.\n");
+    printf("3. Displaying the element of stack.\n");
+    printf("4. The stack is empty.");
+    printf("5. The stack is full. ");
+    printf("6. The top element of stack.");
+    printf("7. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+            case 1:
+            printf("Enter the number you want to push.");
+            scanf("%d", &data);
+            push_in_array_mystack(data);
+            break;
+           
+            case 2:
+            pop_array_mystck();
+            break;
+           
+            case 3:
+            printf("Display the element of stack.");
+            display_stack_array_mystack();
+            break;
+           
+            case 4:
+            arr_stack_empty();
+            break;
+           
+            case 5:
+            arr_stack_full();
+            break;
+           
+            case 6:
+            arr_top_element_mystack();
+            break;
+           
+            case 7:
+            exit(1);
+            break;
+           
+            default:
+            printf("You enterd the wrong choise.");
+            break;
+        }
+    }
+}
+
+void push_in_array_mystack(int data1){
+    if(top==Max-1){
+        printf("The stack is overflow.");
+    }
+    else{
+        top=top+1;
+        arr_stack[top]=data1;
+    }
+}
+
+void pop_array_mystck(int position1){
+    if(top==-1){
+        printf("The stack is empty.");
+    }
+    else{
+        printf("The poped element is : %d",arr_stack[top]);
+        top=top-1;
+    }
+}
+
+void arr_stack_empty(){
+    if(top==-1){
+       printf("The stack is empty.");
+    }
+}
+
+void arr_stack_full(){
+    if(top==Max-1){
+        printf("The stack is overflow.");
+    }
+}
+
+void arr_top_element_mystack(){
+    if(top==-1){
+        printf("The stack is empty.");
+    }
+    else{
+        int i=top;
+        printf("The peak elemet is : %d", arr_stack[top] );
+    }
+}
+
+void display_stack_array_mystack(){
+    if(top==-1){
+        printf("The stack is empty.");
+    }
+    else{
+        for(int i=top; i>=0; i--){
+            printf("%d ",arr_stack[i]);
+        }
+    }
+}
+
+void linklist_mystack(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on stack of linklist-----------\n");
+    printf("\n");
+    printf("1. Inserting an element at the linklist stack.\n");
+    printf("2. Deleting top at the linklist stack.\n");
+    printf("3. Displaying the element of linklist stack.\n");
+    printf("4. The top element of linklist stack.\n");
+    printf("5. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+    switch(a){
+        case 1:
+        printf("Enter the number you want to push.");
+        scanf("%d", &data);
+        push_linklist_mystack(data);
+        break;
+       
+        case 2:
+        pop_linklist_mystack();
+        break;
+       
+        case 3:
+        display_linklist_mystack();
+        break;
+       
+        case 4:
+        //top_linklist_mystack();
+        break;
+       
+        case 5:
+        exit(1);
+        break;
+       
+        default:
+        printf("You entered the wrong choise:");
+        break;
+       
+        }
+    }
+}
+
+void push_linklist_mystack(int data1){
+    struct lnode* temp;
+    temp= (struct lnode*)malloc(sizeof(struct lnode));
+    temp->data=data1;
+   
+    if(head3==NULL){
+       printf("The list is empty :");
+       head3=temp;
+    }else{
+        temp->next=head3;
+        head3=temp;
+    }
+}
+
+int pop_linklist_mystack(){
+    struct lnode* ptr;
+    if(head3==NULL){
+        printf("nothing to delete :");
+    }
+    else{
+        ptr=head3;
+        int val=head3->data;
+        head3=head3->next;
+        free(ptr);
+        return val;
+    }
+   
+}
+
+void display_linklist_mystack(){
+    struct lnode* temp;
+    temp=head3;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+
+
+
+
+void myqueue(){
+    int a,data, position;
+    while(1){
+    printf("----------Various operation on queue of array-----------\n");
+    printf("\n");
+    printf("1. Queue implementaionn by array.\n");
+    printf("2. Queue implementaionn by linklist.\n");
+    printf("3. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+    switch(a){
+        case 1:
+        arr_myqueue();
+        break;
+       
+        case 2:
+        linklist_myqueue();
+        break;
+       
+        default:
+        printf("You enterd the wrong choise.\n");
+        break;
+    }
+  }
+}
+
+void arr_myqueue(){
+    int a,data, position;
+    while(1){
+    printf("\n----------Various operation on queue of array-----------\n");
+    printf("\n");
+    printf("1. Enqueue by array.\n");
+    printf("2. Dequeue by array.\n");
+    printf("3. Dispaly.");
+    printf("4. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+    switch(a){
+        case 1:
+        enqueue_myqueue();
+        break;
+       
+        case 2:
+        dequeue_myqueue();
+        break;
+       
+        case 3:
+        display_arr_queue();
+        break;
+       
+        default:
+        printf("You enterd the wrong choise");
+        break;
+    }
+  }
+}  
+void enqueue_myqueue(){
+    int data1;
+    if(rear==Max-1){
+        printf("Overflow condition.\n");
+    }
+    else{
+        printf("Enter the no. you want to ensert : ");
+        scanf("%d", &data1);
+        if(front==-1 && rear==-1){
+            printf("The queue  is empty.");
+            front=0;
+            rear=0;
+        }
+        else{
+            rear=rear+1;
+        }
+        queue_arr[rear]=data1;
+    }
+}
+
+void dequeue_myqueue(){
+    if(front==-1 && rear==-1){
+        printf("Nothing to delete.");
+    }
+    else{
+        printf("Th deleted elemet is :%d", queue_arr[front]);
+        front=front+1;
+    }
+}
+
+void display_arr_queue(){
+    if(front==-1 && rear==-1){
+        printf("Nothing to display.");
+    }
+    else{
+        int i;
+        for(i=front; i<=rear; i++){
+            printf("%d ", queue_arr[i]);
+        }
+    }
+}
+
+
+
+
+void linklist_myqueue(){
+    int a,data;
+    while(1){
+    printf("\n----------Various operation on queue of array-----------\n");
+    printf("\n");
+    printf("1. Enqueue by linklist.\n");
+    printf("2. Dequeue by linklist.\n");
+    printf("3. Dispaly.\n");
+    printf("4. Exit.\n");
+   
+    printf("Enter your choise :");
+    scanf("%d", &a);
+   
+        switch(a){
+           
+            case 1:
+            printf("Enter the no. you want to ensert : ");
+            scanf("%d", &data);
+            enqueue_linklist_myqueue(data);
+            break;
+           
+            case 2:
+            dequeue_linklist_myqueue();
+            break;
+           
+            case 3:
+            display_linklist_myqueue();
+            break;
+           
+            case 4:
+            exit(1);
+            break;
+           
+            default:
+            printf("You entered the wrong choise.");
+            break;
+           
+        }
+    }
+}
+
+void enqueue_linklist_myqueue(int data1){
+    struct nodesl* temp;
+    temp=(struct nodesl*)malloc(sizeof(struct nodesl));
+    temp->data=data1;
+
+    if(front1==NULL){
+        front1=temp;
+        rear1=temp;
+        front1->next=NULL;
+        rear1->next=NULL;
+    }
+    else{
+        rear1->next=temp;
+        rear1=temp;
+        rear1->next=NULL;
+    }
+}
+
+void dequeue_linklist_myqueue(){
+    struct nodesl* temp;
+    if(front1==NULL && rear1==NULL){
+        printf("Stack is empty.");
+    }
+    else if(front1==rear1){
+        temp=front1;
+        front1=NULL;
+        rear1=NULL;
+        free(temp);
+    }
+    else{
+        temp=front1;
+        front1=front1->next;
+        free(temp);
+    }
+}
+
+void display_linklist_myqueue(){
+    struct nodesl* temp;
+    temp=front1;
+   
+    if(front1==NULL){
+        printf("The queue is empty.");
+    }
+    else{
+    while(temp!=NULL){
+        printf("%d ", temp->data);
+        temp=temp->next;
+    }
+  }
+}
+   
+
+
+int main(){
+    char choise;
+    printf("\n****Various data structure****\n" );
+    printf("------------------------------\n");
+    printf("1. Array\n");
+    printf("2. Linklist\n");
+    printf("3. Stack.\n");
+    printf("4. Queue.\n");
+   
+   
+   
+    printf("Enter your choise :\n");
+    scanf("%hhd",&choise);
+   
+    while(1){
+        switch(choise){
+           
+            case 1:
+            myarray();
+            break;
+           
+            case 2:
+            mylinklist();
+            break;
+           
+            case 3:
+            mystack();
+            break;
+           
+            case 4:
+            myqueue();
+            break;
+           
+            
+           
+            default:
+            printf("You entered the wrong choise :\n");
+            break;
+        }
+    }
+    return 0;
+}
